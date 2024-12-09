@@ -57,7 +57,9 @@ const About = () => {
       </div>
 
       <div>
-        <h3 className="w-full font-medium underline mb-2">Purpose:</h3>
+        <h3 className="w-full text-xl md:text-2xl font-medium underline mb-2">
+          Purpose:
+        </h3>
         <p className="w-full">
           The portfolio is designed to highlight my professional journey and
           technical expertise, while also demonstrating practical implementation

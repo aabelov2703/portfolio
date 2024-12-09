@@ -1,26 +1,5 @@
 import NavPortfolio from "@/components/portfolio/nav-portfolio";
 import Hero from "@/components/portfolio/hero";
-
-/*import dynamic from "next/dynamic";
-const Skills = dynamic(() => import("@/components/portfolio/skills"), {
-  ssr: false,
-});
-const Experiences = dynamic(
-  () => import("@/components/portfolio/experiences"),
-  { ssr: false }
-);
-const Education = dynamic(() => import("@/components/portfolio/education"), {
-  ssr: false,
-});
-const Testimonial = dynamic(
-  () => import("@/components/portfolio/testimonial"),
-  { ssr: false }
-);
-const Contact = dynamic(() => import("@/components/portfolio/contact"), {
-  ssr: false,
-});
-
-*/
 import Projects from "@/components/portfolio/projects";
 import Skills from "@/components/portfolio/skills";
 import Experiences from "@/components/portfolio/experiences";
