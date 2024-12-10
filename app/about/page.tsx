@@ -1,8 +1,8 @@
 const About = () => {
   return (
     <section
-      id="hero"
-      className="flex h-screen flex-col items-center my-4 gap-4 md:gap-8 p-6 text-base md:text-lg"
+      id="about"
+      className="flex grow flex-col items-center my-4 gap-4 md:gap-8 p-6 text-base md:text-lg"
     >
       <h1 className={`text-center text-4xl font-medium leading-1`}>About</h1>
 

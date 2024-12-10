@@ -16,10 +16,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="flex flex-col items-center text-foreground scrollbar-hide bg-gradient-to-tr from-background via-primary-0 to-background brightness-105">
+      <body className="min-h-screen flex flex-col items-center text-foreground scrollbar-hide bg-gradient-to-tr from-background via-primary-0 to-background brightness-105">
         <AppContextProvider>
           <NavBar />
-          <main className="relative flex justify-center w-full min-w-[320px] max-w-lg sm:max-w-2xl md:max-w-5xl antialiased">
+          <main className="relative flex grow justify-center w-full min-w-[320px] max-w-lg sm:max-w-2xl md:max-w-5xl antialiased">
             {children}
           </main>
           <Footer />
