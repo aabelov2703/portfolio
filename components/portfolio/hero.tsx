@@ -8,7 +8,7 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="flex flex-col justify-center items-center mt-2 xs:mt-8 md:mt-10"
+      className="flex flex-col justify-center items-center mt-6 xs:mt-8 md:mt-10"
     >
       <h1
         className={`text-center text-4xl uppercase font-semibold tracking-tight leading-none ${textGradientClass}`}

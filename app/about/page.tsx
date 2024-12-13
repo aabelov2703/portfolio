@@ -53,6 +53,15 @@ const About = () => {
               </li>
             </ul>
           </li>
+          <li className="ml-2 before:content-['➤'] before:mr-2 before:text-secondary-1">
+            <strong>Animated Code Slides: </strong>
+            <ul className="flex flex-col gap-2">
+              <li className="ml-5 before:content-['✓'] before:font-bold before:mr-2 before:text-secondary-1">
+                Smooth animations enhance project demo transitions, making the
+                browsing experience more dynamic and visually engaging.
+              </li>
+            </ul>
+          </li>
         </ul>
       </div>
 

@@ -10,7 +10,7 @@ const Projects = () => {
       <h2 className="text-3xl font-semibold mb-4 bg-clip-text bg-gradient-to-tl from-primary-1 via-primary-1 to-warning-1 text-transparent">
         Projects
       </h2>
-      <article className="grid grid-cols-1 sm:grid-cols-2 base:grid-cols-3 gap-8 py-4">
+      <article className="grid grid-cols-1 sm:grid-cols-2 base:grid-cols-3 gap-8 py-4 auto-rows-max">
         {PROJECTS.map((project) => (
           <Project
             key={project.id}
@@ -18,6 +18,7 @@ const Projects = () => {
             descr={project.descr}
             techs={project.techs}
             img={project.img}
+            snippets={project.snippets}
           />
         ))}
       </article>

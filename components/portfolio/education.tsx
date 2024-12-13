@@ -13,7 +13,7 @@ const Education = () => {
         {EDUCATION.map((edu, idx) => (
           <article
             key={idx}
-            className="p-4 text-base md:text-lg rounded-xl shadow shadow-blue-500/25 "
+            className="p-4 text-base md:text-lg rounded-xl shadow shadow-blue-500/25"
           >
             <p>{edu.title}</p>
             <p>{edu.school}</p>

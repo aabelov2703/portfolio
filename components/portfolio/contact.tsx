@@ -22,7 +22,7 @@ const Contact = () => {
         {LINKS.map((item, idx) => (
           <Link
             key={idx}
-            className="mx-0 flex gap-2 my-1 items-center hover:scale-105 hover:saturate-200 transition"
+            className="m-2 flex items-center gap-2 hover:scale-105 hover:saturate-200 transition"
             href={item.url}
             target="_blank"
             rel="noopener noreferrer"

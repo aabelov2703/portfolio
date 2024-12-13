@@ -16,6 +16,20 @@ export const PROJECTS = [
       "An innovative platform leveraging AI to analyze and forecast stock company dynamics, enabling informed decision-making for investors.",
     techs: ["Next.js", "Tailwind CSS", "Flask", "PostgreSQL"],
     img: "/assets/projects/stocks.jpg",
+    snippets: [
+      {
+        header: "Next.js + Tailwind CSS",
+        code: 'export default function NewsTabPanel({ news, pKey, companyName }) {\nreturn (\n  <Tab.Panel className="flex flex-col gap-6">\n    {news && news?.length > 0 ? (\n      <NewsComponent\n        id="news"\n        pKey={pKey}\n        news={news}\n        name={getTitle(companyName, "")}\n      />\n    ) : (\n      <NoData\n        title="No data to show."\n        message="Check back as coverage improves."\n      />\n    )}\n  </Tab.Panel>\n);\n}',
+      },
+      {
+        header: "Flask: testing",
+        code: "def test_json_portfolio_creation():\n    helper = PortfolioHelper()\n    helper._check_for_nonexistent_keys = lambda x, y: y\n    owner_id = '555f0962-486b-48ab-8f9e-708a92863efb'\n    portfolio_json = {'owner_id': owner_id, 'name': 'New Portfolio'}\n    entries = [entry_1, entry_2]\n    result = helper.create_portfolio_from_json(\n        PortfolioCreationRequest.from_dict(portfolio_json),\n        json.dumps({'entries': entries}, default=str),\n    )\n    get_result = helper.get_portfolio(result.portfolio.id)\n    assert result.status == 'created'\n    assert result.portfolio == get_result",
+      },
+      {
+        header: "PostgreSQL table",
+        code: "CREATE TABLE public.mr_portfolio_inbox(\n   id SERIAL PRIMARY KEY,\n   portfolio_id uuid NOT NULL,\n   n_entries int NOT NULL,\n   entries_str text NOT NULL,\n   failed boolean DEFAULT FALSE\n);",
+      },
+    ],
   },
   {
     id: 2,
@@ -24,6 +38,20 @@ export const PROJECTS = [
       "A comprehensive recruitment platform covering the entire hiring life cycle, including candidate management, interview scheduling, and onboarding.",
     techs: ["React", "Java", "Spring Boot", "MySQL"],
     img: "/assets/projects/recruitment.jpg",
+    snippets: [
+      {
+        header: "React + Redux",
+        code: "const getCandidate = (note) => {\n  const page = note.description ? 3 : 0;\n  dispatch(setShowBasic(page === 0 ? true : false));\n  dispatch(setShowComments(page === 3 ? true : false));\n  getCandidateAsIs(headers, note.entityId)\n    .then((res) => {\n      if (res.data) {\n        dispatch(setCandidate(res.data));\n        if (res.data.professionalInfo)\n          dispatch(setProfessionalInfo(res.data.professionalInfo));\n      }\n      dispatch(setShowCandidate(true));\n      closeDrawer();\n    })\n};",
+      },
+      {
+        header: "Spring Boot Service",
+        code: "@Service\npublic class SubjectService {\n    @Autowired\n    private SubjectRepo subjectRepo;\n\n    public List<Subject> getAllSubjects() {\n        return subjectRepo.findAll();\n    }\n\n    public Subject getSubjectById(Long id) {\n        return subjectRepo.findById(id)\n                .orElseThrow(() -> new ResourceNotFoundException('Subject with ID:' + id + ' not found'));\n    }\n\n    public Subject createSubject(Subject subject) {\n        return subjectRepo.save(subject);\n    }\n\n    public Subject updateSubject(Long id, Subject subjectDetails) {\n        Subject subject = subjectRepo.findById(id)\n                .orElseThrow(() -> new ResourceNotFoundException('Subject with ID:' + id + ' not found'));\n        subject.setName(subjectDetails.getName());\n        return subjectRepo.save(subject);\n    }\n\n    public void deleteSubject(Long id) {\n        Subject subject = subjectRepo.findById(id)\n                .orElseThrow(() -> new ResourceNotFoundException('Subject with ID:' + id + ' not found'));\n        subjectRepo.delete(subject);\n    }\n}",
+      },
+      {
+        header: "MySQL",
+        code: "UPDATE activity_tracking t\nINNER JOIN (\n	SELECT ah.updated_date,\n		ah.tracking_id,\n		ah.tracking_status,\n		ah.id,\n    ah.comment\n	FROM activity_history ah\n	WHERE ah.updated_date <= (\n		SELECT MIN(updated_date)\n		FROM activity_history ahm\n		WHERE ahm.tracking_id = ah.tracking_id)\n) h\nSET t.comment = h.comment,\n	t.id = h.id,\n	t.tracking_status = h.tracking_status,\n	t.updated_date = h.updated_date\nWHERE t.tracking_id  = h.tracking_id;",
+      },
+    ],
   },
   {
     id: 3,
@@ -32,6 +60,24 @@ export const PROJECTS = [
       "A mobile platform that provides users with comprehensive, real-time access to all their energy consumption data in one place, anytime.",
     techs: ["PostgreSQL", "PlPg/SQL", "Clickhouse", "React", "Docker"],
     img: "/assets/projects/electricity.jpg",
+    snippets: [
+      {
+        header: "Bash: Clickhouse service script",
+        code: "#!/usr/bin/env sh\nc_sql=\"\n  SELECT distinct 'alter table ' || database || '.' ||  table || ' drop partition ' || partition as cmd\n  FROM system.parts\n  WHERE active and database = 'default'\n    AND toString(max_time) != '0000-00-00 00:00:00'\n    AND max_time < (today() - 120);\"\ndocker exec -i mlk_ch_db clickhouse-client --query='$c_sql'  | while read -r line\ndo\n  echo ${line} | docker exec -i mlk_ch_db clickhouse-client\ndone",
+      },
+      {
+        header: "PostgreSQL",
+        code: "WITH cte AS (\n  SELECT DISTINCT c_type\n  FROM dbo.ed_seals es\n  WHERE c_type IS NOT NULL\n    AND c_type NOT LIKE '%;%'\n)\nINSERT INTO dbo.es_seal_types (c_name)SELECT c_type\nFROM cte cd\nWHERE NOT EXISTS\n(SELECT 1 FROM dbo.es_seal_types st WHERE st.c_name = cd.c_type)",
+      },
+      {
+        header: "Clickhouse",
+        code: "-- high-lvl stats\nSELECT r.f_div,\n  SUM(r.dev) AS devices,\n  SUM(r.ev) AS events,\n  SUM(r.ins) AS instants,\n  SUM(r.rea) AS readings\nFROM (\n  SELECT\n    SUBSTRING(reverse(trim(both '()' from `partition` )), 1, 1) AS f_div,\n    IF(TABLE='devices', rows, 0) AS dev,\n    IF(TABLE='events', rows, 0) AS ev,\n    IF(TABLE='instants', rows, 0) AS ins,\n    IF(TABLE='readings', rows, 0) AS rea\n  FROM `system`.parts\n  WHERE TABLE IN ('devices','events','instants','readings')\n    AND active\n) AS r\nGROUP BY r.f_div\nORDER BY r.f_div",
+      },
+      {
+        header: "Docker Compose",
+        code: 'services:\n  postgres:\n    image: postgres:10\n    container_name: postgres_db\n    env_file:\n      - .env\n    ports:\n      - "5432:5432"\n    volumes:\n      - postgres_data:/var/lib/postgresql/data\n    networks:\n      - db_network\n  cron_service:\n    image: alpine:latest\n    container_name: cron_service\n    command: ["sh", "-c", "crond -f"]\n    volumes:\n      - ./cronjobs:/etc/cron.d\n      - ./scripts:/scripts\n    networks:\n      - db_network\n    depends_on:\n      - postgres',
+      },
+    ],
   },
   {
     id: 4,
@@ -40,6 +86,12 @@ export const PROJECTS = [
       "A robust billing system designed for energy networks, including automated invoicing and detailed financial reports generation.",
     techs: ["MS SQL", "SSRS"],
     img: "/assets/projects/energo.jpg",
+    snippets: [
+      {
+        header: "MS SQL",
+        code: "DECLARE @SealsMode INT\nSELECT TOP 1 @SealsMode = c.N_Seals_Mode\nFROM [MobileService].dbo.CS_Configs c\nWHERE c.B_Default = 1\n\nIF (OBJECT_ID('tempdb..#SealsPrev') IS NOT NULL) DROP TABLE #SealsPrev\nCREATE TABLE #SealsPrev(DocDetails_ID INT, LINK INT, F_Division INT)\nINSERT INTO #SealsPrev\nSELECT DISTINCT dc.LINK, S.LINK, S.F_Division\nFROM #DocDetails dc\n	-- prev operation\n	OUTER APPLY (\n		SELECT TOP 1 dc_sub.LINK, dc_sub.F_Division\n		FROM dbo.ED_Device_Checks dc_sub\n			INNER JOIN dbo.ED_Seals s_sub\n				ON s_sub.F_Division = dc_sub.F_Division\n				AND s_sub.F_Device_Checks = dc_sub.LINK\n		WHERE dc_sub.F_Division = dc.F_Division\n			AND dc_sub.F_Devices = dc.F_Devices\n			AND dc_sub.D_Date < dc.D_Date\n		ORDER BY dc_sub.D_Date DESC\n	) AS tPrev\n	INNER JOIN dbo.ED_Seals S\n		ON S.F_Division = tPrev.F_Division\n		AND S.F_Device_Checks = tPrev.LINK\nWHERE @SealsMode = 1 AND dc.F_Parent_Devices IS NULL AND dc.D_Replace_Date IS NULL",
+      },
+    ],
   },
   {
     id: 5,
@@ -48,14 +100,30 @@ export const PROJECTS = [
       "A large-scale system developed for the Federal Treasury. Responsibilities included optimizing Oracle database structures and creating PL/SQL packages for data processing.",
     techs: ["Oracle", "PL/SQL", "MS SQL", "FoxPro"],
     img: "/assets/projects/treasury.jpg",
+    snippets: [
+      {
+        header: "Oracle",
+        code: "SELECT x.abo_guid\n  FROM (\n  SELECT r.doc_guid, r.business_status,\n         r2.doc_guid AS abo_guid,\n         ROW_NUMBER () OVER (PARTITION BY b.bc_reg_number ORDER BY b.change_number DESC) rn\n    FROM xxt_bc_reason_headers b,\n         xxt_bs_doc_registry r,\n         xxt_rp_headers p,\n         xxt_bs_doc_registry r2\n   WHERE b.bc_reason_header_id = r.source_id\n     AND r.source_table = 'XXT_BC_REASON_HEADERS'\n     AND r.business_status IN ('003')\n     AND b.pa = p.segment1\n     AND b.su_code = p.segment4\n     AND p.header_id = xxt_bs_operation_pub.get_gvar_value ('P_ACT_KEY')\n     AND b.bc_header_id = r2.source_id\n     AND r2.source_table = 'XXT_BC_HEADERS'\n     AMND EXISTS (\n	   SELECT 1\n         FROM xxt_bc_lines bl\n        WHERE bl.bc_header_id = b.bc_header_id\n         AND bl.year >= to_char(p.report_date,'YYYY')\n         AND bl.amount <> 0)\n  ) x\n  WHERE x.rn = 1",
+      },
+    ],
   },
   {
     id: 6,
     title: "Telecom Billing Utilities",
     descr:
       "A suite of tools and utilities for managing billing operations for a cellular company, enhancing automation and reducing processing time.",
-    techs: ["Oracle", "Delphi"],
+    techs: ["Oracle", "Delphi", "MS SQL"],
     img: "/assets/projects/telecom.jpg",
+    snippets: [
+      {
+        header: "Oracle",
+        code: "DECLARE\n  v_phone_number VARCHAR2(15) := 'MSISDN Number'; -- Replace with number\nBEGIN\n  FOR rec IN (\n    SELECT c.name, o.order_date, o.total_amount\n      FROM customers c\n      JOIN orders o ON c.customer_id = o.customer_id\n      WHERE c.phone_number = v_phone_number)\n  LOOP\n    DBMS_OUTPUT.PUT_LINE('Customer: ' || rec.name || ', Order Date: ' || rec.order_date || ', Total: ' || rec.total_amount);\n  END LOOP;\nEND;\n/",
+      },
+      {
+        header: "Delphi",
+        code: "procedure TForm1.btnCheckBalanceClick(Sender: TObject);\nvar\n  PhoneNumber: string;\nbegin\n  PhoneNumber := edtPhoneNumber.Text;\n  if PhoneNumber = '' then Exit;\n\n  ADOQuery1.Close;\n  ADOQuery1.SQL.Text := 'SELECT Balance FROM Customers WHERE PhoneNumber = :PhoneNumber';\n  ADOQuery1.Parameters.ParamByName('PhoneNumber').Value := PhoneNumber;\n\n  ADOQuery1.Open;\n  if not ADOQuery1.Eof then\n    ShowMessage('Balance: ' + ADOQuery1.FieldByName('Balance').AsString)\n  else\n    ShowMessage('Phone number not found.');\nend;",
+      },
+    ],
   },
 ];
 
