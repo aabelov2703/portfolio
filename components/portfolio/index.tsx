@@ -1,3 +1,4 @@
+"use client";
 import NavPortfolio from "@/components/portfolio/nav-portfolio";
 import Hero from "@/components/portfolio/hero";
 import Projects from "@/components/portfolio/projects";

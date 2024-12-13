@@ -1,12 +1,35 @@
 "use client";
 import { NAV_PORTOLIO } from "@/lib/const-portfolio";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 type NavPortfolioProps = {
   className?: string;
   onClick?: () => void;
 };
 const NavPortfolio: React.FC<NavPortfolioProps> = ({ className, onClick }) => {
+  const [activeSection, setActiveSection] = useState("");
+
+  useEffect(() => {
+    const sections = document.querySelectorAll("section[id]");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActiveSection(entry.target.id);
+        });
+      },
+      {
+        rootMargin: "-35% 0px -50% 0px",
+        threshold: 0.01,
+      }
+    );
+    sections.forEach((section) => observer.observe(section));
+
+    return () => {
+      sections.forEach((section) => observer.unobserve(section));
+    };
+  }, []);
+
   const linkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     const elTarget = document.querySelector(href);
@@ -29,7 +52,8 @@ const NavPortfolio: React.FC<NavPortfolioProps> = ({ className, onClick }) => {
           key={idx}
           href={navItem.href}
           scroll={true}
-          className="px-2 p-0 md:p-2 text-md md:text-base hover:z-50 hover:text-white hover:-translate-y-[.5px] transition"
+          className={`px-2 p-0 md:p-2 text-md md:text-base hover:z-50 hover:text-white hover:-translate-y-[.5px] transition 
+            ${activeSection === navItem.href.slice(1) ? "bg-blue-600/40" : ""}`}
           onClick={(e) => linkClick(e, navItem.href)}
         >
           {navItem.label}

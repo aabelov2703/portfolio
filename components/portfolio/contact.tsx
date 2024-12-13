@@ -6,7 +6,7 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="flex flex-col justify-center items-center my-10 text-base md:text-lg mb-60"
+      className="flex flex-col justify-center items-center text-base md:text-lg mt-30 mb-60"
     >
       <h2 className="text-3xl font-semibold mb-4 bg-clip-text bg-gradient-to-tl from-primary-1 via-primary-1 to-warning-1 text-transparent">
         Contact

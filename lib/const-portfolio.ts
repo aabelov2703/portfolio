@@ -1,5 +1,5 @@
 export const NAV_PORTOLIO = [
-  //{ href: "#hero", label: "Home" },
+  { href: "#hero", label: "I'm" },
   { href: "#projects", label: "Projects" },
   { href: "#skills", label: "Skills" },
   { href: "#exp", label: "Experience" },

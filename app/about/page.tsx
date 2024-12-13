@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const About = () => {
   return (
     <section
@@ -36,6 +38,19 @@ const About = () => {
                 <em>About</em>, along with an anchor navigation bar for quickly
                 jumping to sections like Projects, Skills, Experience,
                 Education, and Contacts.
+              </li>
+              <li className="ml-5 before:content-['✓'] before:font-bold before:mr-2 before:text-secondary-1">
+                Highlights the Portfolio&apos;s active section dynamically using
+                the
+                <Link
+                  className="underline italic text-primary-1 mx-2"
+                  href="https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  IntersectionObserver API
+                </Link>
+                for a clear browsing experience
               </li>
               <li className="ml-5 before:content-['✓'] before:font-bold before:mr-2 before:text-secondary-1">
                 Mobile navigation adapts with a <strong>burger menu</strong>,
