@@ -7,6 +7,7 @@ import Experiences from "@/components/portfolio/experiences";
 import Education from "@/components/portfolio/education";
 import Testimonial from "@/components/portfolio/testimonial";
 import Contact from "@/components/portfolio/contact";
+import AnimatedSection from "../animated-section";
 
 export default function Porfolio() {
   return (
@@ -17,12 +18,24 @@ export default function Porfolio() {
       />
       <div className="flex flex-col text-primary-1 px-4 xs:px-6 md:px-8 gap-10 ">
         <Hero />
-        <Projects />
-        <Skills />
-        <Experiences />
-        <Education />
-        <Testimonial />
-        <Contact />
+        <AnimatedSection>
+          <Projects />
+        </AnimatedSection>
+        <AnimatedSection>
+          <Skills />
+        </AnimatedSection>
+        <AnimatedSection>
+          <Experiences />
+        </AnimatedSection>
+        <AnimatedSection>
+          <Education />
+        </AnimatedSection>
+        <AnimatedSection>
+          <Testimonial />
+        </AnimatedSection>
+        <AnimatedSection>
+          <Contact />
+        </AnimatedSection>
       </div>
     </div>
   );

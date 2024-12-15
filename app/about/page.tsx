@@ -41,6 +41,17 @@ const About = () => {
                 jumping to sections like Projects, Skills, Experience,
                 Education, and Contacts.
               </li>
+
+              <li className="ml-5 before:content-['✓'] before:font-bold before:mr-2 before:text-secondary-1">
+                Mobile navigation adapts with a <strong>burger menu</strong>,
+                where anchor navigation is seamlessly integrated under the{" "}
+                <em>Portfolio</em> section for a clean and compact layout.
+              </li>
+            </ul>
+          </li>
+          <li className="ml-2 before:content-['➤'] before:mr-2 before:text-secondary-1">
+            <strong>Animation: </strong>
+            <ul className="flex flex-col gap-2">
               <li className="ml-5 before:content-['✓'] before:font-bold before:mr-2 before:text-secondary-1">
                 Highlights the Portfolio&apos;s active section dynamically using
                 the
@@ -52,30 +63,22 @@ const About = () => {
                 >
                   IntersectionObserver API
                 </Link>
-                for a clear browsing experience.
+                for a clear browsing experience, with smooth animations that
+                make the new section gently appear as it enters the viewport.
               </li>
               <li className="ml-5 before:content-['✓'] before:font-bold before:mr-2 before:text-secondary-1">
-                Mobile navigation adapts with a <strong>burger menu</strong>,
-                where anchor navigation is seamlessly integrated under the{" "}
-                <em>Portfolio</em> section for a clean and compact layout.
+                Smooth animations also enhance project demo transitions, making
+                the browsing experience more dynamic and visually engaging.
               </li>
             </ul>
           </li>
+
           <li className="ml-2 before:content-['➤'] before:mr-2 before:text-secondary-1">
             <strong>Dark/Light Mode Toggle: </strong>
             <ul className="flex flex-col gap-2">
               <li className="ml-5 before:content-['✓'] before:font-bold before:mr-2 before:text-secondary-1">
                 Users can easily switch between themes to enhance their browsing
                 experience, whether in a light or dark environment.
-              </li>
-            </ul>
-          </li>
-          <li className="ml-2 before:content-['➤'] before:mr-2 before:text-secondary-1">
-            <strong>Animated Code Slides: </strong>
-            <ul className="flex flex-col gap-2">
-              <li className="ml-5 before:content-['✓'] before:font-bold before:mr-2 before:text-secondary-1">
-                Smooth animations enhance project demo transitions, making the
-                browsing experience more dynamic and visually engaging.
               </li>
             </ul>
           </li>
