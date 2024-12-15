@@ -52,8 +52,12 @@ const NavPortfolio: React.FC<NavPortfolioProps> = ({ className, onClick }) => {
           key={idx}
           href={navItem.href}
           scroll={true}
-          className={`px-2 p-0 md:p-2 text-md md:text-base hover:z-50 hover:text-white hover:-translate-y-[.5px] transition 
-            ${activeSection === navItem.href.slice(1) ? "bg-blue-600/40" : ""}`}
+          className={`px-2 p-0 md:p-2 md:px-3 text-md md:text-base hover:z-50
+            ${
+              activeSection === navItem.href.slice(1)
+                ? "rounded bg-gradient-to-b from-blue-800 via-light to-blue-800 text-dark saturate-50 hover:saturate-[75%] scale-105 transition-transform"
+                : "hover:text-white hover:-translate-y-[.5px] transition "
+            }`}
           onClick={(e) => linkClick(e, navItem.href)}
         >
           {navItem.label}

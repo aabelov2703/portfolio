@@ -9,10 +9,12 @@ const About = () => {
       <h1 className={`text-center text-4xl font-medium leading-1`}>About</h1>
 
       <p className="w-full">
-        This website is a personal portfolio show-casing my projects, skills,
-        experience, and education. Designed with a focus on simplicity and
-        responsiveness, it provides an intuitive navigation experience across
-        both desktop and mobile devices.
+        This website is a personal portfolio showcasing my projects, skills,
+        experience and education. Designed with simplicity and responsiveness in
+        mind, it provides intuitive navigation on both desktop and mobile.
+        Developed entirely without the use of third-party libraries, it uses
+        only Next.js and Tailwind CSS to ensure a clean and efficient
+        implementation.
       </p>
 
       <div>
@@ -50,7 +52,7 @@ const About = () => {
                 >
                   IntersectionObserver API
                 </Link>
-                for a clear browsing experience
+                for a clear browsing experience.
               </li>
               <li className="ml-5 before:content-['✓'] before:font-bold before:mr-2 before:text-secondary-1">
                 Mobile navigation adapts with a <strong>burger menu</strong>,

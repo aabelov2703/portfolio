@@ -41,7 +41,7 @@ const NavItems: React.FC<NavItemProps> = ({ items, containerClass }) => {
         {/* Mobile version: additional submenu in burger menu for a given page */}
         {item.sub?.pathIn?.includes(path) ? (
           <NavPortfolio
-            className={`max-w-lg grid gap-x-8 grid-cols-2 flex-wrap ${item.sub.size}:hidden`}
+            className={`max-w-lg grid gap-x-8 gap-y-[2px] grid-cols-2 flex-wrap ${item.sub.size}:hidden`}
             onClick={() => setShowBurger(false)}
           />
         ) : null}
