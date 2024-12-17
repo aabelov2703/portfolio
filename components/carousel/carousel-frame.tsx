@@ -5,7 +5,7 @@ type CarouselFrameProps = {
 const CarouselFrame: React.FC<CarouselFrameProps> = ({ className, data }) => {
   return (
     <div
-      className={`absolute w-full h-full flex flex-col items-center justify-center transition-transform duration-500 ${className}`}
+      className={`absolute w-full h-full flex flex-col items-center justify-center transition-transform duration-500 ease-in-out ${className}`}
     >
       <h4 className="text-sm">{data.header}</h4>
       {data.code && (

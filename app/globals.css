@@ -59,6 +59,7 @@ body {
   scrollbar-width: 0px;
   -ms-overflow-style: none;
   overflow-y: scroll;
+  overflow-x: none;
 }
 
 .scrollbar-hide::-webkit-scrollbar {

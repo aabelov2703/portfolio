@@ -8,7 +8,6 @@ type CarouselProps = {
 };
 const Carousel: React.FC<CarouselProps> = ({ data }) => {
   const [current, setCurrent] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
   const [touchStartX, setTouchStartX] = useState(0);
 
   const frameTouchStart = (e: React.TouchEvent) => {
@@ -22,11 +21,7 @@ const Carousel: React.FC<CarouselProps> = ({ data }) => {
   };
 
   const btnClick = (dir: number) => {
-    if (isAnimating) return;
-    setIsAnimating(true);
-
     setCurrent((prev) => (prev + dir + data.length) % data.length);
-    setIsAnimating(false);
   };
 
   return (
@@ -36,19 +31,15 @@ const Carousel: React.FC<CarouselProps> = ({ data }) => {
         onTouchStart={frameTouchStart}
         onTouchEnd={frameTouchEnd}
       >
-        {data.map((item, idx) => (
-          <CarouselFrame
-            key={idx}
-            data={item}
-            className={`${
-              idx === current
-                ? "translate-x-0"
-                : idx > current
-                ? "translate-x-full"
-                : "-translate-x-full"
-            }`}
-          />
-        ))}
+        {data.map((item, idx) => {
+          const className =
+            idx === current
+              ? "translate-x-0"
+              : idx > current
+              ? "translate-x-full"
+              : "-translate-x-full";
+          return <CarouselFrame key={idx} data={item} className={className} />;
+        })}
       </div>
       <CarouselActions
         current={current}

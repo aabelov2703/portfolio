@@ -3,17 +3,24 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 type CarouselActionsProps = {
   current: number;
   btnClick: (dir: number) => void;
+  setDirection?: (direction: "left" | "right" | undefined) => void;
   slides: number[];
 };
 const CarouselActions: React.FC<CarouselActionsProps> = ({
   current,
   btnClick,
+  setDirection,
   slides,
 }) => {
+  const buttonClick = (dir: number) => {
+    if (setDirection) setDirection(dir < 0 ? "left" : "right");
+    btnClick(Math.sign(dir));
+  };
+
   return (
     <div className="w-full flex justify-between">
       <button
-        onClick={() => btnClick(-1)}
+        onClick={() => buttonClick(-1)}
         className="size-6 rounded-full hover:scale-110 hover:bg-neutral-0 hover:border hover:border-foreground transition"
         aria-label="Previous Slide"
       >
@@ -26,13 +33,13 @@ const CarouselActions: React.FC<CarouselActionsProps> = ({
             className={`rounded-full w-3 h-3 transition ${
               idx === current ? "bg-secondary" : "bg-foreground"
             }`}
-            onClick={() => btnClick(idx - current)}
+            onClick={() => buttonClick(idx - current)}
             aria-label="Slide Index"
           ></button>
         ))}
       </div>
       <button
-        onClick={() => btnClick(1)}
+        onClick={() => buttonClick(1)}
         className="size-6 rounded-full hover:scale-110 hover:bg-neutral-0 hover:border hover:border-foreground transition"
         aria-label="Previous Slide"
       >

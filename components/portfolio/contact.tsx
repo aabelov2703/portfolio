@@ -16,7 +16,7 @@ const Contact = () => {
         className="mb-8 underline hover:text-warning-1 hover:scale-105 transition"
         href="mailto:aleksandr.belov.2703@gmail.com"
       >
-        aleksandr.belov.2703@gmail.com
+        alex.belov.2703@gmail.com
       </Link>
       <div>
         {LINKS.map((item, idx) => (

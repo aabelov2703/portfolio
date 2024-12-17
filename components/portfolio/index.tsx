@@ -16,9 +16,11 @@ export default function Porfolio() {
         className="hidden md:flex justify-center sticky z-50 left-4 right-4 top-12 shrink max-w-3/4 mx-auto rounded-b-3xl text-center text-light
           bg-gradient-to-t from-dark via-blue-950 to-blue-950 opacity-90 md:opacity-100"
       />
-      <div className="flex flex-col text-primary-1 px-4 xs:px-6 md:px-8 gap-10 ">
-        <Hero />
+      <div className="flex flex-col text-primary-1 px-4 xs:px-6 md:px-8 gap-10 overflow-x-hidden">
         <AnimatedSection>
+          <Hero />
+        </AnimatedSection>
+        <AnimatedSection delay={100}>
           <Projects />
         </AnimatedSection>
         <AnimatedSection>
