@@ -14,7 +14,7 @@ const CarouselActions: React.FC<CarouselActionsProps> = ({
 }) => {
   const buttonClick = (dir: number) => {
     if (setDirection) setDirection(dir < 0 ? "left" : "right");
-    btnClick(Math.sign(dir));
+    btnClick(dir);
   };
 
   return (
