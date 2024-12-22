@@ -20,7 +20,7 @@ export default function Porfolio() {
         <AnimatedSection>
           <Hero />
         </AnimatedSection>
-        <AnimatedSection delay={100}>
+        <AnimatedSection>
           <Projects />
         </AnimatedSection>
         <AnimatedSection>

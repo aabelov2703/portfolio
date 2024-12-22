@@ -33,7 +33,7 @@ const AnimatedSection = ({
   };
   const optClass = visible
     ? "opacity-100"
-    : `opacity-0 ${direction ?? "translate-x-10 md:translate-x-full"}`;
+    : `opacity-0 ${direction ?? "translate-x-full"}`;
 
   return (
     <div

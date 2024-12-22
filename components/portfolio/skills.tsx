@@ -1,5 +1,6 @@
 import { SKILLS } from "@/lib/const-portfolio";
 import Skill from "./skill";
+import AnimatedSection from "../animated-section";
 
 const Skills = () => {
   return (
@@ -12,12 +13,14 @@ const Skills = () => {
       </h2>
       <article className="flex justify-center flex-wrap py-4">
         {SKILLS.map((skill, idx) => (
-          <Skill
+          <AnimatedSection
             key={idx}
-            name={skill.name}
-            img={skill.img}
-            color={skill.color}
-          />
+            delay={150}
+            direction="translate-y-10"
+            duration={300}
+          >
+            <Skill name={skill.name} img={skill.img} color={skill.color} />
+          </AnimatedSection>
         ))}
       </article>
     </section>

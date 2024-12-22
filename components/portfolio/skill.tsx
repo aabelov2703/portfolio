@@ -21,7 +21,7 @@ const Skill = ({ name, img, color, className, size }: SkillProps) => {
       {img && <Image src={img} width={imgSize} height={imgSize} alt="" />}
       <span
         className={`text-primary-1 font-light ${fontSize}
-          ${img ? "left-10" : ""}`}
+        ${img ? "left-10" : ""}`}
       >
         {name}
       </span>
