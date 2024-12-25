@@ -15,7 +15,7 @@ const Skills = () => {
         {SKILLS.map((skill, idx) => (
           <AnimatedSection
             key={idx}
-            delay={150}
+            delay={idx * 15}
             direction="translate-y-10"
             duration={300}
           >
